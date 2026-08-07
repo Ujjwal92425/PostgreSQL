@@ -1,0 +1,24 @@
+name: Main Branch Guard
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Allow only maintainer direct pushes
+        if: github.actor != 'Ujjwal92425'
+        run: |
+          echo "Direct pushes to main are restricted to Ujjwal92425."
+          echo "Please open a pull request instead."
+          exit 1
+
+      - name: Confirm allowed maintainer push
+        if: github.actor == 'Ujjwal92425'
+        run: echo "Maintainer push allowed."
