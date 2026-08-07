@@ -1,109 +1,104 @@
-# PostgreSQL Learning Journey 
+# PostgreSQL Learning Journey
 
-A structured, self-documented journey through PostgreSQL and database engineering — from SQL fundamentals to production-grade system design for an SDE-2 role.
+A Next.js notes app for learning PostgreSQL from first principles to production-grade backend engineering.
 
-This repo contains my notes, diagrams, solved problems, and hands-on experiments as I learn PostgreSQL from 0 to 100.
+The project is designed like a clean notepad/docs experience: collapsible topic navigation, one page per subtopic, responsive layouts, SQL examples, tables, and interactive walkthroughs for dynamic database behavior.
 
----
+## What This Is
 
-## About
+- PostgreSQL notes from beginner to deep production level.
+- A shared production-style schema used across the whole curriculum.
+- Separate pages for every subtopic.
+- Interactive examples for locking, indexing, MVCC, query planning, replication, and system design patterns.
+- Static export support for GitHub Pages.
 
-I'm learning PostgreSQL and relational database concepts end-to-end — not just syntax, but the internals: indexing, query optimization, transactions, replication, sharding, and how to actually run this in production (AWS RDS). This repo is my public learning log.
+## Tech Stack
 
-**Goal:** Be interview-ready and production-ready for an SDE-2 backend role.
+- Next.js App Router
+- React
+- TypeScript
+- Tailwind CSS
+- Lucide icons
+- Static export for GitHub Pages
 
----
-
-## Repo Structure
-
-```
-postgres-learning/
-├── 00-foundations/            # DBMS, RDBMS, ACID, CAP, client-server, keys
-├── 01-core-sql/                # DDL, DML, DQL, DCL, TCL, constraints
-├── 02-data-types/              # Numeric, JSONB, arrays, enums, ranges
-├── 03-joins-set-ops/           # All join types, UNION/INTERSECT/EXCEPT
-├── 04-subqueries-window-fns/   # CTEs, recursive CTEs, window functions
-├── 05-functions-plpgsql/       # UDFs, PL/pgSQL, stored procedures, triggers
-├── 06-indexing/                # B-Tree, GIN, GiST, BRIN, index decisions
-├── 07-query-optimization/      # EXPLAIN ANALYZE, planner, ORMs, pooling
-├── 08-transactions/            # Isolation levels, MVCC, locking
-├── 09-schema-design/           # ER modeling, normalization, migrations
-├── 10-scaling/                 # Partitioning, sharding, replication
-├── 11-backup-recovery/         # pg_dump, PITR, WAL archiving
-├── 12-security/                # Roles, RLS, encryption
-├── 13-extensions/               # pg_stat_statements, pgcrypto, citus, etc.
-├── 14-aws-rds/                  # RDS setup, Aurora, cost optimization
-├── 15-monitoring-maintenance/   # Observability, bloat management
-├── 16-system-design/            # CDC, outbox pattern, real-world designs
-├── diagrams/                    # All ER diagrams, architecture diagrams (.png/.svg)
-├── problems-solutions/          # Practice queries/problems + my solutions
-└── resources.md                 # Useful links, docs, videos
-```
-
-Each topic folder contains a `notes.md` with my explanations/examples, and a `queries.sql` with hands-on queries I ran.
-
----
-
-## Roadmap & Progress
-
-Tracking my progress phase by phase. Check things off as I complete them.
-
-- [ ] **Phase 0** — Foundations (DBMS vs RDBMS vs NoSQL, ACID, CAP, keys, client-server)
-- [ ] **Phase 1** — Core SQL (DDL, DML, DQL, DCL, TCL, constraints)
-- [ ] **Phase 2** — Data Types (deep dive)
-- [ ] **Phase 3** — Joins & Set Operations
-- [ ] **Phase 4** — Subqueries, CTEs & Window Functions
-- [ ] **Phase 5** — Functions, PL/pgSQL, Triggers
-- [ ] **Phase 6** — Indexing (deep dive)
-- [ ] **Phase 7** — Query Optimization & Planner
-- [ ] **Phase 8** — Transactions & Concurrency
-- [ ] **Phase 9** — Schema Design & Normalization
-- [ ] **Phase 10** — Partitioning, Sharding, Replication
-- [ ] **Phase 11** — Backup & Recovery
-- [ ] **Phase 12** — Security
-- [ ] **Phase 13** — Extensions
-- [ ] **Phase 14** — AWS RDS Hosting
-- [ ] **Phase 15** — Monitoring & Maintenance
-- [ ] **Phase 16** — SDE-2 System Design Application
-
----
-
-## Setup (for anyone following along)
+## Local Development
 
 ```bash
-# Run Postgres locally via Docker
-docker run --name pg-learning -e POSTGRES_PASSWORD=mypassword -p 5432:5432 -d postgres
-
-# Connect using psql
-psql -h localhost -U postgres -d postgres
+npm install
+npm run dev
 ```
 
----
+Open:
 
-## How I'm Using This Repo
+```txt
+http://localhost:3000
+```
 
-- **`notes.md`** in each folder — concepts explained in my own words, with examples
-- **`queries.sql`** in each folder — every SQL query I actually ran and tested
-- **`diagrams/`** — ER diagrams, architecture diagrams, index structure visuals
-- **`problems-solutions/`** — practice problems (LeetCode SQL, HackerRank, real-world scenarios) with my solutions and explanation of approach
+## Production Build
 
----
+```bash
+npm run build
+```
 
-## Resources
+The static site is exported into:
 
-See [`resources.md`](./resources.md) for the full list of docs, articles, and videos I'm using.
+```txt
+out/
+```
 
-Key references:
-- [Official PostgreSQL Documentation](https://www.postgresql.org/docs/)
-- [Use The Index, Luke](https://use-the-index-luke.com/) — indexing deep dive
-- [PostgreSQL Exercises](https://pgexercises.com/)
+## Curriculum Shape
 
----
+The notes are driven by:
 
-## Notes
+```txt
+lib/curriculum.ts
+content/notes.ts
+lib/schema.ts
+```
 
-This is a personal learning repo — notes may be simplified or in-progress. Corrections and suggestions are welcome via issues/PRs.
+Every note page follows this learning flow:
 
----
+1. Definition in simple English
+2. Why it matters
+3. Mental model
+4. Core concept breakdown
+5. Schema used in the page
+6. Query examples
+7. Example output
+8. PostgreSQL internals
+9. Common mistakes
+10. Production considerations
+11. Interview angle
+12. Practice tasks
+13. Further reading
 
-⭐ If you're on a similar learning path, feel free to fork this and use the same structure.
+## Shared Schema Domains
+
+The schema intentionally mixes multiple production use cases:
+
+- Identity: users, sessions, roles, permissions
+- Catalog: products, variants, prices, inventory
+- Orders: carts, orders, order items, status history
+- Payments: attempts, refunds, invoices, ledger entries
+- Seat booking: venues, events, seats, holds, reservations, tickets
+- Shipping: addresses, shipments, shipment events
+- Operations: audit logs, outbox events, idempotency keys
+- Analytics: page views, impressions, search events
+
+This lets the notes cover locking, indexes, decimal money values, transactions, normalization, partitioning, security, CDC, and real system design scenarios without changing domains every page.
+
+## GitHub Pages
+
+This app is configured for static export in `next.config.mjs`.
+
+The workflow in `.github/workflows/deploy.yml` builds the app and publishes the `out/` directory to GitHub Pages on pushes to `main`.
+
+In the repository settings, set GitHub Pages source to **GitHub Actions**.
+
+## Repository Rules
+
+Do not push directly to `main` unless you are `Ujjwal92425`.
+
+All other changes must be made through a pull request. See [CONTRIBUTING.md](./CONTRIBUTING.md) and the pull request template for the full rules.
+
+For public-repository protection, also enable the GitHub settings listed in [docs/repository-safeguards.md](./docs/repository-safeguards.md).

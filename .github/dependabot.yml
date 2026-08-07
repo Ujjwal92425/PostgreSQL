@@ -1,0 +1,37 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: '09:00'
+      timezone: Asia/Kolkata
+    open-pull-requests-limit: 5
+    target-branch: main
+    labels:
+      - dependencies
+    groups:
+      nextjs:
+        patterns:
+          - next
+          - react
+          - react-dom
+      tooling:
+        patterns:
+          - typescript
+          - tailwindcss
+          - postcss
+          - autoprefixer
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: '09:15'
+      timezone: Asia/Kolkata
+    open-pull-requests-limit: 5
+    target-branch: main
+    labels:
+      - dependencies
