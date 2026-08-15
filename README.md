@@ -58,7 +58,7 @@ lib/schema.ts
 
 Every note page follows this learning flow:
 
-1. Definition in simple English
+1. Definition
 2. Why it matters
 3. Mental model
 4. Core concept breakdown
